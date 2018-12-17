@@ -1,4 +1,4 @@
-# DEEP as a Service container image classification
+# DEEP as a Service container for image classification
 
 ![DEEP-Hybrid-DataCloud logo](https://deep-hybrid-datacloud.eu/wp-content/uploads/2018/01/logo.png)
 
