@@ -28,7 +28,7 @@ Building the container:
 1. Get the `DEEP-OC-conus-classification` repository (this repo):
 
     ```bash
-    $ git clone https://github.com/indigo-dc/DEEP-OC-conus-classification
+    $ git clone https://github.com/indigo-dc/DEEP-OC-image-classification-tf
     ```
 
 2. Build the container:
