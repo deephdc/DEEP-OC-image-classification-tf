@@ -25,7 +25,7 @@ to modify the `Dockerfile` for instance) follow the following instructions:
 
 Building the container:
 
-1. Get the `DEEP-OC-conus-classification` repository (this repo):
+1. Get the `DEEP-OC-image-classification-tf` repository (this repo):
 
     ```bash
     $ git clone https://github.com/indigo-dc/DEEP-OC-image-classification-tf
