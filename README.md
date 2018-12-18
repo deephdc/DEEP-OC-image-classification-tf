@@ -41,7 +41,7 @@ Building the container:
 3. Run the container:
 
     ```bash
-    $ docker run -ti -p 5000:5000 deephdc/deep-oc-classification-tf
+    $ docker run -ti -p 5000:5000 deephdc/deep-oc-image-classification-tf
     ```
 
 These three steps will download the repository from GitHub and will build the
