@@ -14,14 +14,10 @@ RUN apt-get install -y --no-install-recommends \
         libxext6 \
         psmisc \
 		python3-tk
-		
-
-
 
 # We could shrink the dependencies, but this is a demo container, so...
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-         build-essential 
-
+         build-essential
 
 WORKDIR /srv
 
@@ -30,25 +26,14 @@ RUN git clone https://github.com/indigo-dc/image-classification-tf && \
     python -m pip install -e . && \
     cd ..
 
-# TODO(aloga): use PyPi whenever possible
-RUN git clone -b train2 https://github.com/indigo-dc/DEEPaaS.git && \
-    cd DEEPaaS && \
-    python -m pip install -U . && \
-    cd ..
+# Install DEEPaaS
+RUN pip install deepaas
 
-#Useful tool to debug extensions loading
+# Useful tool to debug extensions loading
 RUN python -m pip install entry_point_inspector
 
-#ENV SWIFT_CONTAINER https://cephrgw01.ifca.es:8080/swift/v1/seeds_tf/
-#ENV MODEL_TAR api.tar.gz
-
-#RUN curl -o ./image-classification-tf/models/${MODEL_TAR} \
-#    ${SWIFT_CONTAINER}${MODEL_TAR}
-
-#RUN cd image-classification-tf/models && \
-#        tar xvf ${MODEL_TAR}
+# Temporal patch to fix keras issue
 RUN cp /srv/image-classification-tf/docker/advanced_activations.py /usr/local/lib/python3.5/dist-packages/tensorflow/python/keras/layers/advanced_activations.py
-
 
 # install rclone
 RUN apt-get install -y wget nano && \
@@ -65,4 +50,3 @@ RUN apt-get install -y wget nano && \
 EXPOSE 5000 6006
 
 CMD deepaas-run --listen-ip 0.0.0.0
-

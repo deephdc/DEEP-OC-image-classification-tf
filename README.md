@@ -4,9 +4,10 @@
 
 [![Build Status](https://jenkins.indigo-datacloud.eu:8080/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/DEEP-OC-image-classification-tf/master)](https://jenkins.indigo-datacloud.eu:8080/job/Pipeline-as-code/job/DEEP-OC-org/job/DEEP-OC-image-classification-tf/job/master)
 
-This is a container that will run the DEEP as a Service API component. From the DEEPaas API the user can chosse the model to train or to predict, together with the basic input parameters
+This is a container that will run the DEEP as a Service API component. From the DEEPaas API the user can choose the model
+ to train or to predict, together with the basic input parameters.
 
-# Running the container
+# Run the container
 
 ## Directly from Docker Hub
 
@@ -14,10 +15,10 @@ To run the Docker container directly from Docker Hub and start using the API
 simply run the following command:
 
 ```bash
-$ docker run -ti -p 5000:5000 deephdc/deep-oc-image-classification-tf
+$ docker run -ti -p 5000:5000 -p 6006:6006 deephdc/deep-oc-image-classification-tf
 ```
 
-This command will pull the Docker container grom the Docker Hub
+This command will pull the Docker container from the Docker Hub
 [`deephdc`](https://hub.docker.com/u/deephdc/) organization.
 
 ## Building the container
@@ -36,14 +37,14 @@ Building the container:
 2. Build the container:
 
     ```bash
-    $ cd DEEP-OC-conus-classification
+    $ cd DEEP-OC-image-classification-tf
     $ docker build -t deephdc/deep-oc-image-classification-tf .
     ```
 
 3. Run the container:
 
     ```bash
-    $ docker run -ti -p 5000:5000 deephdc/deep-oc-image-classification-tf
+    $ docker run -ti -p 5000:5000 -p 6006:6006 deephdc/deep-oc-image-classification-tf
     ```
 
 These three steps will download the repository from GitHub and will build the
@@ -55,4 +56,6 @@ mode.
 # Connect to the API
 
 Once the container is up and running, browse to `http://localhost:5000` to get
-the [OpenAPI (Swagger)](https://www.openapis.org/) documentation page.
+the [OpenAPI (Swagger)](https://www.openapis.org/) documentation page. If you are
+training on your dataset, you can monitor the training progress in Tensorboard 
+connecting to `http://localhost:6006`. 
