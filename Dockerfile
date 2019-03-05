@@ -28,7 +28,7 @@ RUN git clone https://github.com/indigo-dc/image-classification-tf && \
     cd ..
 
 # Install DEEPaaS
-RUN pip install deepaas
+RUN pip install 'deepaas>=0.3.0'
 
 # Useful tool to debug extensions loading
 RUN python -m pip install entry_point_inspector
@@ -47,4 +47,5 @@ RUN apt-get install -y wget nano && \
 # Expose API on port 5000 and tensorboard on port 6006
 EXPOSE 5000 6006
 
-CMD deepaas-run --listen-ip 0.0.0.0
+CMD ["sh", "-c", "deepaas-run --openwhisk-detect --listen-ip 0.0.0.0"]
+
