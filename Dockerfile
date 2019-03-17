@@ -10,8 +10,7 @@ LABEL description="DEEP as a Service Container: Image Classification"
 # What user branch to clone (!)
 ARG branch=master
 
-RUN apt-get update && \
-    apt-get upgrade -y
+RUN apt-get update 
 
 RUN apt-get install -y --no-install-recommends \
         curl \
