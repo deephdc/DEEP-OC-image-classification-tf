@@ -50,7 +50,7 @@ RUN apt-get install -y wget nano && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
 
-# Expose API on port 5000 and tensorboard on port 6006
+# Expose API on port 5000 and tensorboard on port 6006.
 EXPOSE 5000 6006
 
 CMD ["sh", "-c", "deepaas-run --openwhisk-detect --listen-ip 0.0.0.0"]
