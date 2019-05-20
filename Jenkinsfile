@@ -16,10 +16,13 @@ pipeline {
     stages {
         stage('Docker image building') {
             when {
-                anyOf {
-                    branch 'master'
-                    branch 'test'
-                    buildingTag()
+                allOf {
+                    changeset 'Dockerfile'
+                    anyOf {
+                        branch 'master'
+                        branch 'test'
+                        buildingTag()
+                    }
                 }
             }
             steps{
@@ -74,14 +77,16 @@ pipeline {
                 }
             }
         }
-        
           
         stage('Docker Hub delivery') {
             when {
-                anyOf {
-                    branch 'master'
-                    branch 'test'
-                    buildingTag()
+                allOf {
+                    changeset 'Dockerfile'
+                    anyOf {
+                        branch 'master'
+                        branch 'test'
+                        buildingTag()
+                    }
                 }
             }
             steps {
@@ -96,6 +101,21 @@ pipeline {
                 }
                 always {
                     cleanWs()
+                }
+            }
+        }
+
+        stage("Render metadata on the marketplace") {
+            when {
+                allOf {
+                    branch 'master'
+                    changeset 'metadata.json'
+                }
+            }
+            steps {
+                script {
+                    def job_result = JenkinsBuildJob("Pipeline-as-code/deephdc.github.io/pelican")
+                    job_result_url = job_result.absoluteUrl
                 }
             }
         }

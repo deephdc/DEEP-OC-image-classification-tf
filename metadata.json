@@ -1,0 +1,45 @@
+{
+    "title": "DEEP OC Image Classification (Tensorflow)",
+    "summary": "A model to train an image classifier on your data.",
+    "description": [
+        "The deep learning revolution has brought significant advances in a number of fields [1], primarily linked to",
+        "image and speech recognition. The standardization of image classification tasks like the [ImageNet Large Scale",
+        "Visual Recognition Challenge](http://www.image-net.org/challenges/LSVRC/) [2] has resulted in a reliable way to",
+        "compare top performing architectures.\n",
+
+        "This Docker container contains the tools to train an image classifier on your personal dataset. It is a highly ",
+        "customizable tool  that let's you choose between tens of different [top performing arquitectures](https://github.com/keras-team/keras-applications) ",
+        "and training parameters.\n",
+
+        "**References**\n",
+        "[1]: Yann LeCun, Yoshua Bengio, and Geofrey Hinton. [Deep learning](https://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf). Nature, 521(7553):436-444, May 2015.\n",
+        "[2]: Olga Russakovsky et al. [ImageNet Large Scale Visual Recognition Challenge](https://arxiv.org/abs/1409.0575). International Journal of Computer Vision (IJCV), 115(3):211-252, 2015.\n"
+    ],
+    "keywords": [
+        "models", "library/tensorflow", "library/keras", "docker"
+    ],
+    "license": "Apache 2.0",
+    "date_creation": "2019-01-01",
+    "sources": {
+		"dockerfile_repo": "https://github.com/deephdc/DEEP-OC-image-classification-tf",
+		"docker_registry_repo": "deephdc/deep-oc-image-classification-tf",
+		"code": "https://github.com/deephdc/image-classification-tf"
+	},
+    "continuous_integration": {
+        "build_status_badge": "https://jenkins.indigo-datacloud.eu/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/DEEP-OC-image-classification-tf/master",
+        "build_status_url": "https://jenkins.indigo-datacloud.eu/job/Pipeline-as-code/job/DEEP-OC-org/job/DEEP-OC-image-classification-tf/job/master"
+    },
+    "tosca": [
+        {
+            "title": "Mesos (CPU)",
+            "url": "https://raw.githubusercontent.com/indigo-dc/tosca-templates/master/deep-oc/deep-oc-image-classification-tf-mesos-cpu.yml",
+            "inputs": [
+                "rclone_conf",
+                "rclone_url",
+                "rclone_vendor",
+                "rclone_user",
+                "rclone_pass"
+            ]
+        }
+    ]
+}
