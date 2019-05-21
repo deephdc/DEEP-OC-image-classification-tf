@@ -7,8 +7,8 @@
         "Visual Recognition Challenge](http://www.image-net.org/challenges/LSVRC/) [2] has resulted in a reliable way to",
         "compare top performing architectures.\n",
 
-        "This Docker container contains the tools to train an image classifier on your personal dataset. It is a highly ",
-        "customizable tool  that let's you choose between tens of different [top performing arquitectures](https://github.com/keras-team/keras-applications) ",
+        "This Docker container contains the tools to train an image classifier on your personal dataset. It is a highly",
+        "customizable tool  that let's you choose between tens of different [top performing architectures](https://github.com/keras-team/keras-applications)",
         "and training parameters.\n",
 
         "**References**\n",
