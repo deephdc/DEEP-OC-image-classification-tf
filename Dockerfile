@@ -90,6 +90,16 @@ RUN git clone -b $branch https://github.com/deephdc/image-classification-tf && \
     rm -rf /tmp/* && \
     cd ..
 
+# Download network weights
+ENV SWIFT_CONTAINER https://cephrgw01.ifca.es:8080/swift/v1/imagenet-tf/
+ENV MODEL_TAR default_imagenet.tar.xz
+
+RUN curl -o ./image-classification-tf/models/${MODEL_TAR} \
+    ${SWIFT_CONTAINER}${MODEL_TAR}
+
+RUN cd image-classification-tf/models && \
+        tar -xf ${MODEL_TAR}
+
 # Open DEEPaaS port
 EXPOSE 5000
 
