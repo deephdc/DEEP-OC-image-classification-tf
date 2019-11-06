@@ -18,7 +18,7 @@ To run the Docker container directly from Docker Hub and start using the API
 simply run the following command:
 
 ```bash
-$ docker run -ti -p 5000:5000 -p 6006:6006 deephdc/deep-oc-image-classification-tf
+$ docker run -ti -p 5000:5000 -p 6006:6006 -p 8888:8888 deephdc/deep-oc-image-classification-tf
 ```
 
 This command will pull the Docker container from the Docker Hub
@@ -47,9 +47,16 @@ Building the container:
 3. Run the container:
 
     ```bash
-    $ docker run -ti -p 5000:5000 -p 6006:6006 deephdc/deep-oc-image-classification-tf
+    $ docker run -ti -p 5000:5000 -p 6006:6006  -p 8888:8888  deephdc/deep-oc-image-classification-tf
     ```
-
+   
+   You can also run Jupyter Lab inside the container:
+   
+   ```bash
+   $ docker run -ti -p 5000:5000 -p 6006:6006 -p 8888:8888 deephdc/deep-oc-image-classification-tf /bin/bash
+   $root@47a6604ef008:/srv# jupyter lab --allow-root
+   ```
+   
 These three steps will download the repository from GitHub and will build the
 Docker container locally on your machine. You can inspect and modify the
 `Dockerfile` in order to check what is going on. For instance, you can pass the
