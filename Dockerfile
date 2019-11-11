@@ -22,6 +22,9 @@ ARG pyVer=python3
 # What user branch to clone (!)
 ARG branch=master
 
+# If to install JupyterLab
+ARG jlab=true
+
 # Install ubuntu updates and python related stuff
 # link python3 to python, pip3 to pip, if needed
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
@@ -82,6 +85,21 @@ RUN pip install --no-cache-dir entry_point_inspector && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
 
+# Install DEEP debug_log scripts:
+RUN git clone https://github.com/deephdc/deep-debug_log /srv/.debug_log
+
+# Install JupyterLab
+ENV JUPYTER_CONFIG_DIR /srv/.jupyter/
+# Necessary for the Jupyter Lab terminal
+ENV SHELL /bin/bash
+RUN if [ "$jlab" = true ]; then \
+       apt update && \
+       apt install -y nodejs npm && \
+       apt-get clean && \
+       pip install --no-cache-dir jupyterlab ; \
+       git clone https://github.com/deephdc/deep-jupyter /srv/.jupyter ; \
+    else echo "[INFO] Skip JupyterLab installation!"; fi
+
 # Install user app:
 RUN git clone -b $branch https://github.com/deephdc/image-classification-tf && \
     cd image-classification-tf && \
@@ -105,6 +123,9 @@ EXPOSE 5000
 
 # Open Monitoring port
 EXPOSE 6006
+
+# Open JupyterLab port
+EXPOSE 8888
 
 # Account for OpenWisk functionality (deepaas >=0.4.0) + proper docker stop
 CMD ["deepaas-run", "--openwhisk-detect", "--listen-ip", "0.0.0.0", "--listen-port", "5000"]

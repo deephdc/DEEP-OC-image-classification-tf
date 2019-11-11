@@ -14,12 +14,14 @@ pipeline {
     }
 
     stages {
+
         stage('Validate metadata') {
             steps {
                 checkout scm
                 sh 'deep-app-schema-validator metadata.json'
             }
         }
+
         stage('Docker image building') {
             when {
                 anyOf {
@@ -70,8 +72,6 @@ pipeline {
                 }
             }
         }
-
-
 
         stage('Docker Hub delivery') {
             when {
