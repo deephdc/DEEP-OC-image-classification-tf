@@ -112,7 +112,7 @@ RUN git clone -b $branch https://github.com/deephdc/image-classification-tf && \
 ENV SWIFT_CONTAINER https://cephrgw01.ifca.es:8080/swift/v1/imagenet-tf/
 ENV MODEL_TAR default_imagenet.tar.xz
 
-RUN curl -o ./image-classification-tf/models/${MODEL_TAR} \
+RUN curl --insecure -o ./image-classification-tf/models/${MODEL_TAR} \
     ${SWIFT_CONTAINER}${MODEL_TAR}
 
 RUN cd image-classification-tf/models && \
