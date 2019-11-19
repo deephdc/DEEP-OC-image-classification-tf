@@ -16,7 +16,7 @@ ENV CONTAINER_MAINTAINER "Lara Lloret Iglesias <lloret@ifca.unican.es>"
 ENV CONTAINER_VERSION "0.1"
 ENV CONTAINER_DESCRIPTION "DEEP as a Service Container: Image Classification"
 
-# python version
+# Python version
 ARG pyVer=python3
 
 # What user branch to clone (!)
