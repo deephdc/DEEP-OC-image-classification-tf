@@ -32,6 +32,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
          git \
          curl \
          wget \
+         psmisc \
          $pyVer-setuptools \
          $pyVer-pip \
          $pyVer-wheel && \
