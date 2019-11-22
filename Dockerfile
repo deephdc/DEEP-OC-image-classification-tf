@@ -2,22 +2,15 @@
 # tag - tag for the Base image, (e.g. 1.10.0-py3 for tensorflow)
 # branch - user repository branch to clone (default: master, other option: test)
 
-ARG tag=1.12.0-py3
+ARG tag=1.14.0-py3
 
 # Base image, e.g. tensorflow/tensorflow:1.12.0-py3
 FROM tensorflow/tensorflow:${tag}
-
-LABEL maintainer="Lara Lloret Iglesias <lloret@ifca.unican.es>"
-LABEL version="0.1"
-LABEL description="DEEP as a Service Container: Image Classification"
 
 # Add container's metadata to appear along the models metadata
 ENV CONTAINER_MAINTAINER "Lara Lloret Iglesias <lloret@ifca.unican.es>"
 ENV CONTAINER_VERSION "0.1"
 ENV CONTAINER_DESCRIPTION "DEEP as a Service Container: Image Classification"
-
-# python version
-ARG pyVer=python3
 
 # What user branch to clone (!)
 ARG branch=master
@@ -32,21 +25,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
          git \
          curl \
          wget \
-         $pyVer-setuptools \
-         $pyVer-pip \
-         $pyVer-wheel && \
+         python3-setuptools \
+         python3-pip \
+         python3-wheel && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/* && \
-    if [ "$pyVer" = "python3" ] ; then \
-       if [ ! -e /usr/bin/pip ]; then \
-          ln -s /usr/bin/pip3 /usr/bin/pip; \
-       fi; \
-       if [ ! -e /usr/bin/python ]; then \
-          ln -s /usr/bin/python3 /usr/bin/python; \
-       fi; \
-    fi && \
     python --version && \
     pip --version
 
@@ -112,7 +97,7 @@ RUN git clone -b $branch https://github.com/deephdc/image-classification-tf && \
 ENV SWIFT_CONTAINER https://cephrgw01.ifca.es:8080/swift/v1/imagenet-tf/
 ENV MODEL_TAR default_imagenet.tar.xz
 
-RUN curl -o ./image-classification-tf/models/${MODEL_TAR} \
+RUN curl --insecure -o ./image-classification-tf/models/${MODEL_TAR} \
     ${SWIFT_CONTAINER}${MODEL_TAR}
 
 RUN cd image-classification-tf/models && \
