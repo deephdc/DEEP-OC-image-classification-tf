@@ -1,6 +1,6 @@
 {
-    "title": "DEEP OC Image Classification (Tensorflow)",
-    "summary": "A model to train an image classifier on your data.",
+    "title": "Train an image classifier",
+    "summary": "Train your own image classifier with your custom dataset. It comes also pretrained on the 1K ImageNet classes.",
     "description": [
         "The deep learning revolution has brought significant advances in a number of fields [1], primarily linked to",
         "image and speech recognition. The standardization of image classification tasks like the [ImageNet Large Scale",
@@ -16,19 +16,24 @@
         "The PREDICT method expects an RGB image as input (or the url of an RGB image) and will return a JSON with ",
         "the top 5 predictions.\n",
 
+        "<img class='fit', src='https://raw.githubusercontent.com/deephdc/DEEP-OC-image-classification-tf/master/images/imagenet.png'/>\n",
+
         "**References**\n",
         "[1]: Yann LeCun, Yoshua Bengio, and Geofrey Hinton. [Deep learning](https://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf). Nature, 521(7553):436-444, May 2015.\n",
         "[2]: Olga Russakovsky et al. [ImageNet Large Scale Visual Recognition Challenge](https://arxiv.org/abs/1409.0575). International Journal of Computer Vision (IJCV), 115(3):211-252, 2015.\n"
     ],
     "keywords": [
-        "models", "library/tensorflow", "library/keras", "docker"
+        "models", "library/tensorflow", "library/keras", "docker", "deep learning", "trainable"
     ],
     "license": "Apache 2.0",
     "date_creation": "2019-01-01",
     "sources": {
 		"dockerfile_repo": "https://github.com/deephdc/DEEP-OC-image-classification-tf",
 		"docker_registry_repo": "deephdc/deep-oc-image-classification-tf",
-		"code": "https://github.com/deephdc/image-classification-tf"
+		"code": "https://github.com/deephdc/image-classification-tf",
+        "training_files_url": "https://cephrgw01.ifca.es:8080/swift/v1/imagenet-tf/",
+        "dataset_url": "http://www.image-net.org/challenges/LSVRC/",
+        "cite_url": "http://digital.csic.es/handle/10261/194498"
 	},
     "continuous_integration": {
         "build_status_badge": "https://jenkins.indigo-datacloud.eu/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/DEEP-OC-image-classification-tf/master",
