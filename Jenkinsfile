@@ -9,8 +9,8 @@ pipeline {
 
     environment {
         dockerhub_repo = "deephdc/deep-oc-image-classification-tf"
-        base_cpu_tag = "1.12.0-py3"
-        base_gpu_tag = "1.12.0-gpu-py3"
+        base_cpu_tag = "1.14.0-py3"
+        base_gpu_tag = "1.14.0-gpu-py3"
     }
 
     stages {
@@ -93,6 +93,37 @@ pipeline {
                 }
                 always {
                     cleanWs()
+                }
+            }
+        }
+
+        stage("Re-build DEEP-OC Docker images for derived services") {
+            when {
+                anyOf {
+                   branch 'master'
+                   branch 'test'
+                   buildingTag()
+                }
+            }
+            steps {
+
+                // Wait for the base image to be correctly updated in DockerHub as it is going to be used as base for
+                // building the derived images
+                sleep(time:5, unit:"MINUTES")
+
+                script {
+                    def derived_job_locations =
+                    ['Pipeline-as-code/DEEP-OC-org/DEEP-OC-plants-classification-tf',
+                     'Pipeline-as-code/DEEP-OC-org/DEEP-OC-conus-classification-tf',
+                     'Pipeline-as-code/DEEP-OC-org/DEEP-OC-seeds-classification-tf',
+                     'Pipeline-as-code/DEEP-OC-org/DEEP-OC-phytoplankton-classification-tf'
+                     ]
+
+                    for (job_loc in derived_job_locations) {
+                        job_to_build = "${job_loc}/${env.BRANCH_NAME}"
+                        def job_result = JenkinsBuildJob(job_to_build)
+                        job_result_url = job_result.absoluteUrl
+                    }
                 }
             }
         }
