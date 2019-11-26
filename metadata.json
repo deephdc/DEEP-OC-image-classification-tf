@@ -27,13 +27,13 @@
     ],
     "license": "Apache 2.0",
     "date_creation": "2019-01-01",
+    "training_files_url": "https://cephrgw01.ifca.es:8080/swift/v1/imagenet-tf/",
+    "dataset_url": "http://www.image-net.org/challenges/LSVRC/",
+    "cite_url": "http://digital.csic.es/handle/10261/194498",
     "sources": {
 		"dockerfile_repo": "https://github.com/deephdc/DEEP-OC-image-classification-tf",
 		"docker_registry_repo": "deephdc/deep-oc-image-classification-tf",
-		"code": "https://github.com/deephdc/image-classification-tf",
-        "training_files_url": "https://cephrgw01.ifca.es:8080/swift/v1/imagenet-tf/",
-        "dataset_url": "http://www.image-net.org/challenges/LSVRC/",
-        "cite_url": "http://digital.csic.es/handle/10261/194498"
+		"code": "https://github.com/deephdc/image-classification-tf"
 	},
     "continuous_integration": {
         "build_status_badge": "https://jenkins.indigo-datacloud.eu/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/DEEP-OC-image-classification-tf/master",
