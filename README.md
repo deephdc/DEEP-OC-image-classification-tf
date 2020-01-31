@@ -66,7 +66,7 @@ mode.
 
 ## Connect to the API
 
-Once the container is up and running, browse to `http://localhost:5000` to get
+Once the container is up and running, browse to `http://localhost:5000/ui` to get
 the [OpenAPI (Swagger)](https://www.openapis.org/) documentation page. If you are
 training on your dataset, you can monitor the training progress in Tensorboard 
 connecting to `http://localhost:6006`. 
