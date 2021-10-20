@@ -37,6 +37,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     python --version && \
     pip --version
 
+RUN pip install --upgrade pip setuptools wheel
+
 # Set LANG environment
 ENV LANG C.UTF-8
 
@@ -95,6 +97,9 @@ RUN if [ "$jlab" = true ]; then \
        pip install --no-cache-dir jupyterlab ; \
        git clone https://github.com/deephdc/deep-jupyter /srv/.jupyter ; \
     else echo "[INFO] Skip JupyterLab installation!"; fi
+
+# Needed for open-cv
+RUN apt-get update && apt-get install -y libgl1
 
 # Install user app:
 RUN git clone -b $branch https://github.com/deephdc/image-classification-tf && \
