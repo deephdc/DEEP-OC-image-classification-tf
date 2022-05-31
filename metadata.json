@@ -27,7 +27,7 @@
     ],
     "license": "Apache 2.0",
     "date_creation": "2019-01-01",
-    "training_files_url": "https://cephrgw01.ifca.es:8080/swift/v1/imagenet-tf/",
+    "training_files_url": "https://api.cloud.ifca.es:8080/swift/v1/imagenet-tf/",
     "dataset_url": "http://www.image-net.org/challenges/LSVRC/",
     "cite_url": "http://digital.csic.es/handle/10261/194498",
     "sources": {
